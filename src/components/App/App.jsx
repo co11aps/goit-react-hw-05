@@ -3,8 +3,8 @@ import { fetchMovies } from "../API/API";
 
 const App = () => {
   const handleClick = async () => {
-    await fetchMovies();
     console.log("hello");
+    await fetchMovies();
   };
 
   return (
