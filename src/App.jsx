@@ -1,5 +1,5 @@
 import "./App.css";
 
-function App() {}
+const App = () => {};
 
 export default App;
