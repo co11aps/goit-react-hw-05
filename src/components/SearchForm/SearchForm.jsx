@@ -1,8 +1,10 @@
 const SearchForm = () => {
   return (
     <>
-      <input type="text" />
-      <button>Search</button>
+      <form action="">
+        <input type="text" />
+        <button type="submit">Search</button>
+      </form>
     </>
   );
 };
