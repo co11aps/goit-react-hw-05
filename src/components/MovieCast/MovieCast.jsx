@@ -47,7 +47,9 @@ const MovieCast = () => {
                 height={375}
               />
               <h4>{actor.original_name}</h4>
-              {actor.character && <p>{`(${actor.character})`}</p>}
+              {actor.character && (
+                <p className={css.character}>{`(${actor.character})`}</p>
+              )}
             </li>
           ))}
         </ul>

@@ -16,6 +16,10 @@
 
 }
 
+.character {
+    max-width: 255px;
+}
+
 .card {
     text-align: center;
 }
