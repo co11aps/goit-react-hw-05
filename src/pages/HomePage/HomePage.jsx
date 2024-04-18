@@ -25,7 +25,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h2 className={css.tranding}>Trending today</h2>
+      <h2 className={css.trending}>Trending today</h2>
       {loader && <Loader />}
       <MovieList movieList={movieList} />
     </div>
