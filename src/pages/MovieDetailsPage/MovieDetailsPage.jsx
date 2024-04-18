@@ -1,11 +1,18 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Suspense, useEffect, useState } from "react";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieById } from "../../components/API/API";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   const [movieDetails, setMovieDetails] = useState({});
+  const [backLinkHref, setBackLinkHref] = useState({});
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setBackLinkHref(location.state ?? "/movies");
+  }, []);
 
   useEffect(() => {
     if (!movieId) return;
@@ -13,8 +20,6 @@ const MovieDetailsPage = () => {
       try {
         const movie = await getMovieById(movieId);
         setMovieDetails(movie);
-        console.log("overview:", movie.overview);
-        console.log("movie:", movie);
       } catch (error) {
         console.log(error);
       }
@@ -22,13 +27,12 @@ const MovieDetailsPage = () => {
     loadMovieById(movieId);
   }, [movieId]);
 
-  // const releaseDate = movieDetails.release_date.slice(0, 4);
-
   const defaultImg =
     "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
 
   return (
     <>
+      <Link to={backLinkHref}>Back</Link>
       <p>MovieDetailsPage {movieId}</p>
       <h2>{movieDetails.original_title}</h2>
 
@@ -58,7 +62,9 @@ const MovieDetailsPage = () => {
       <p>{movieDetails.overview}</p>
       <Link to="cast">Cast</Link>
       <Link to="reviews">Reviews</Link>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
