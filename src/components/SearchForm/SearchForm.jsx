@@ -1,3 +1,6 @@
+import { BsSearch } from "react-icons/bs";
+import css from "./SearchForm.module.css";
+
 const SearchForm = ({ onSearch }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -12,9 +15,17 @@ const SearchForm = ({ onSearch }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="topic" autoComplete="off" autoFocus />
-        <button type="submit">Search</button>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <input
+          type="text"
+          name="topic"
+          autoComplete="off"
+          autoFocus
+          className={css.input}
+        />
+        <button type="submit" className={css.btn}>
+          <BsSearch size={32} />
+        </button>
       </form>
     </>
   );

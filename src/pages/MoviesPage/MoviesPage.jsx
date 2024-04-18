@@ -4,6 +4,7 @@ import MovieList from "../../components/MovieList/MovieList";
 import { useEffect, useState } from "react";
 import { getMovieByName } from "../../components/API/API";
 import Loader from "../../components/Loader/Loader";
+import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -41,7 +42,7 @@ const MoviesPage = () => {
   return (
     <div>
       <SearchForm onSearch={onSearch} />
-      {nothingFoundErr && <p>Nothing found</p>}
+      {nothingFoundErr && <p className={css.nothingFound}>Nothing found</p>}
       {loader && <Loader />}
       <MovieList movieList={movieList} />
     </div>

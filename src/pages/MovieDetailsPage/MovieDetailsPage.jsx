@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieById } from "../../components/API/API";
+import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -32,38 +33,60 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-      <Link to={backLinkHref}>Back</Link>
-      <h2>{movieDetails.original_title}</h2>
+      <div className={css.details}>
+        <Link to={backLinkHref} className={css.backBtn}>
+          Back
+        </Link>
+        <div>
+          <img
+            src={
+              movieDetails.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
+                : defaultImg
+            }
+            alt={movieDetails.original_name}
+            width={250}
+          />
+        </div>
+        <div className={css.descr}>
+          <div>
+            <div className={css.titleYear}>
+              <h2>{movieDetails.original_title}</h2>
+              {movieDetails.release_date && (
+                <h2>{` (${movieDetails.release_date.slice(0, 4)})`}</h2>
+              )}
+            </div>
+            <h4>{movieDetails.tagline}</h4>
 
-      {movieDetails.release_date && (
-        <h2>{` (${movieDetails.release_date.slice(0, 4)})`}</h2>
-      )}
-      <h4>{movieDetails.tagline}</h4>
-      <h4>Genres</h4>
-      {movieDetails.genres && (
-        <ul>
-          {movieDetails.genres.map((genre) => (
-            <li key={genre.id}>
-              <p>{genre.name}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-      <img
-        src={
-          movieDetails.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
-            : defaultImg
-        }
-        alt={movieDetails.original_name}
-        width={250}
-      />
-      <p>{movieDetails.overview}</p>
-      <Link to="cast">Cast</Link>
-      <Link to="reviews">Reviews</Link>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
+            <p className={css.overview}>{movieDetails.overview}</p>
+          </div>
+
+          <div>
+            <h4>Genres:</h4>
+            {movieDetails.genres && (
+              <ul className={css.genres}>
+                {movieDetails.genres.map((genre) => (
+                  <li key={genre.id}>
+                    <p>{genre.name}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className={css.additional}>
+        <h4>Additional information</h4>
+
+        <div className={css.addLinks}>
+          <Link to="cast">Cast</Link>
+          <Link to="reviews">Reviews</Link>
+        </div>
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </div>
     </div>
   );
 };

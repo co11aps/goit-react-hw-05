@@ -1,0 +1,52 @@
+.backBtn {
+    position: absolute;
+    top: -84px;
+    left: 22px;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 4px 24px;
+    background-color: burlywood;
+}
+
+.details {
+    position: relative;
+    display: flex;
+    margin-bottom: 48px;
+}
+
+.titleYear {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.genres {
+    margin-top: 8px;
+    display: flex;
+    gap: 24px;
+}
+
+.overview {
+    margin-top: 32px;
+    font-size: 22px;
+}
+
+.descr {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.additional h4 {
+    text-align: center;
+}
+
+.addLinks {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 8px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid black;
+}

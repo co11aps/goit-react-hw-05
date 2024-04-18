@@ -1,0 +1,22 @@
+.input {
+    font-size: 22px;
+    padding: 8px 16px;
+    width: 380px;
+}
+
+.form {
+    position: relative;
+    text-align: center;
+    width: 416px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.btn {
+    position: absolute;
+    top: 4px;
+    right: 16px;
+    padding: 04px;
+    border: none;
+    background-color: transparent;
+}

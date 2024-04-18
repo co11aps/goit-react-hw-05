@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCast } from "../API/API";
+import css from "./MovieCast.module.css";
+import Loader from "../Loader/Loader";
 
 const MovieCast = () => {
   const { movieId } = useParams();
   const [movieCast, setMovieCast] = useState(null);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (!movieId) return;
     setMovieCast(null);
     async function onGetCast(movieId) {
       try {
+        setLoader(true);
         const cast = await getCast(movieId);
         setMovieCast(cast);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoader(false);
       }
     }
     onGetCast(movieId);
@@ -24,11 +30,12 @@ const MovieCast = () => {
     "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
 
   return (
-    <div>
+    <div className={css.castDiv}>
+      {loader && <Loader />}
       {movieCast && (
-        <ul>
+        <ul className={css.list}>
           {movieCast.map((actor) => (
-            <li key={actor.id}>
+            <li className={css.card} key={actor.id}>
               <img
                 src={
                   actor.profile_path
@@ -37,10 +44,10 @@ const MovieCast = () => {
                 }
                 alt={actor.original_name}
                 width={250}
+                height={375}
               />
-              <p>{actor.original_name}</p>
-              <p>{`(${actor.character})`}</p>
-              <p>+++++++++++++++++++++++</p>
+              <h4>{actor.original_name}</h4>
+              {actor.character && <p>{`(${actor.character})`}</p>}
             </li>
           ))}
         </ul>

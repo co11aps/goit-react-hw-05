@@ -1,0 +1,11 @@
+.container {
+    padding: 16px;
+}
+
+.container li {
+    margin-bottom: 18px;
+}
+
+.author {
+    font-weight: 550;
+}

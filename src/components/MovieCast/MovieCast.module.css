@@ -1,0 +1,21 @@
+.castDiv {
+
+    padding: 16px;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 34px 34px;
+    align-items: center;
+    justify-content: center;
+}
+
+.list h4 {
+    margin-top: 8px;
+
+}
+
+.card {
+    text-align: center;
+}

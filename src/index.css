@@ -1,5 +1,11 @@
+ul {
+    margin: 0;
+    padding: 0;
+}
+
 li {
     list-style: none;
+
 }
 
 img {
@@ -10,12 +16,38 @@ a {
     text-decoration: none;
 }
 
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+p {
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
 .page-container {
     width: 1024px;
     margin: 0 auto;
     padding: 1rem;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 70px);
     overflow-y: auto;
     border: 1px solid grey;
     border-radius: 8px;
+
+}
+
+.active {
+    font-size: 38px;
+    color: rgb(186, 75, 75);
 }

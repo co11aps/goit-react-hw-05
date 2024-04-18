@@ -1,0 +1,14 @@
+.header {
+
+    background-color: rgb(169, 222, 222);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    justify-content: center;
+}
