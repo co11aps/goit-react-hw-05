@@ -15,7 +15,7 @@ import css from "./App.module.css";
 const App = () => {
   return (
     <>
-      <div>
+      <div className="page-container">
         <Header />
         <Suspense fallback={<div>Loading page...</div>}>
           <Routes>

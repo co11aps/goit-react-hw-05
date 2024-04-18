@@ -22,7 +22,6 @@ const MovieReviews = () => {
 
   return (
     <div>
-      <p>Reviev</p>
       {movieReviews.length !== 0 ? (
         <ul>
           {movieReviews.map((review) => (

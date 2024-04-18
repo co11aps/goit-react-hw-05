@@ -25,8 +25,6 @@ const MovieCast = () => {
 
   return (
     <div>
-      <p>Cast for {movieId}</p>
-
       {movieCast && (
         <ul>
           {movieCast.map((actor) => (

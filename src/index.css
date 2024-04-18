@@ -9,3 +9,13 @@ img {
 a {
     text-decoration: none;
 }
+
+.page-container {
+    width: 1024px;
+    margin: 0 auto;
+    padding: 1rem;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    border: 1px solid grey;
+    border-radius: 8px;
+}

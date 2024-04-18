@@ -39,13 +39,12 @@ const MoviesPage = () => {
   };
 
   return (
-    <>
-      <h2>Movies page</h2>
+    <div>
       <SearchForm onSearch={onSearch} />
       {nothingFoundErr && <p>Nothing found</p>}
       {loader && <Loader />}
       <MovieList movieList={movieList} />
-    </>
+    </div>
   );
 };
 export default MoviesPage;
