@@ -1,30 +1,35 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import MovieList from "../../components/MovieList/MovieList";
+import { useEffect } from "react";
+import { getMovieByName } from "../../components/API/API";
 
 const MoviesPage = () => {
-  const { movieId } = useParams();
+  // const { movieId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // useEffect(() => {
-  //   async function loadMovies() {
-  //     try {
-  //       const movies = await fetchMovies();
-  //       setMovielist(movies);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   loadMovies();
-  // }, []);
+  useEffect(() => {
+    if (!searchParams) return;
+    async function loadMovies() {
+      try {
+        const searchResults = await getMovieByName(searchParams);
+        console.log("search res effect:", searchResults);
+        // setMovielist(movies);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    loadMovies();
+  }, [searchParams]);
 
-  const onSearch = (topic) => {
-    console.log("onSearch topic", topic);
-  };
+  // const onSearch = (topic) => {
+  //   console.log("onSearch topic", topic);
+  // };
 
   return (
     <>
       <h2>Movies page</h2>
-      <SearchForm onSearch={onSearch} />
+      <SearchForm onSearch={setSearchParams} />
       {/* <MovieList /> */}
     </>
   );

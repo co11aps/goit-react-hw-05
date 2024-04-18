@@ -3,13 +3,13 @@ import axios from "axios";
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
 const options = {
+  query: "",
   headers: {
     Authorization: `Bearer ${import.meta.env.VITE_API_READ_ACCESS_TOKEN}`,
   },
 };
 const fetchMovies = async () => {
   const res = await axios.get("/trending/movie/day", options);
-  // console.log(res.data.results);
   return res.data.results;
 };
 
@@ -32,4 +32,13 @@ const getReviews = async (id) => {
   return res.data.results;
 };
 
-export { fetchMovies, getMovieById, getCast, getReviews };
+// https://api.themoviedb.org/3/search/movie
+const getMovieByName = async (query) => {
+  const res = await axios.get(`/search/movie`, options);
+  console.log("api search q", query);
+  console.log("api search", res);
+
+  // return res.data.results;
+};
+
+export { fetchMovies, getMovieById, getCast, getReviews, getMovieByName };

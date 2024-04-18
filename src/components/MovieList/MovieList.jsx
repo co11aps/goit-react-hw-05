@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 
 const MovieList = ({ movieList }) => {
-  const { movieId } = useParams();
+  // const { movieId } = useParams();
 
   return (
     <ul>
