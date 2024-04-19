@@ -1,19 +1,19 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieById } from "../../components/API/API";
 import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-
-  const [movieDetails, setMovieDetails] = useState({});
-  const [backLinkHref, setBackLinkHref] = useState({});
-
   const location = useLocation();
+  const backLinkHref = useRef(location.state ?? "/movies");
+  const [movieDetails, setMovieDetails] = useState({});
 
-  useEffect(() => {
-    setBackLinkHref(location.state ?? "/movies");
-  }, []);
+  // const [backLinkHref, setBackLinkHref] = useState({});
+
+  // useEffect(() => {
+  //   setBackLinkHref(location.state ?? "/movies");
+  // }, []);
 
   useEffect(() => {
     if (!movieId) return;
@@ -34,7 +34,7 @@ const MovieDetailsPage = () => {
   return (
     <div>
       <div className={css.details}>
-        <Link to={backLinkHref} className={css.backBtn}>
+        <Link to={backLinkHref.current} className={css.backBtn}>
           Back
         </Link>
         <div>
